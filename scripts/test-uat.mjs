@@ -26,11 +26,29 @@ function record(code, name, status, details = "") {
   console.log(`${icon} [${code}] ${name}: ${status}${details ? ` - ${details}` : ""}`);
 }
 
+async function isServerReachable(url) {
+  try {
+    const res = await fetch(url, { method: "HEAD" });
+    return res.status < 500;
+  } catch {
+    return false;
+  }
+}
+
 async function runUAT() {
   console.log(`\n======================================================`);
   console.log(`  LegalFlow AI / LegalDMS - Comprehensive UAT Suite   `);
   console.log(`  Target URL: ${BASE_URL}                             `);
   console.log(`======================================================\n`);
+
+  const serverOnline = await isServerReachable(BASE_URL);
+  if (!serverOnline) {
+    console.error(`❌ [SERVER ERROR] Cannot connect to server at ${BASE_URL}.`);
+    console.error(`   The test suite requires the dev server to be running.`);
+    console.error(`   Please run the following command in a separate terminal first:`);
+    console.error(`   npm run dev\n`);
+    process.exit(1);
+  }
 
   const browser = await getBrowser();
   const context = await browser.newContext({
