@@ -1,0 +1,94 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Source Serif 4", "Iowan Old Style", Georgia, "Times New Roman",
+    serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas,
+    monospace;
+
+  --color-paper: #f3f0e8;
+  --color-canvas: #ebe6db;
+  --color-raised: #faf8f3;
+  --color-ink: #171a1f;
+  --color-ink-2: #2c323c;
+  --color-ink-soft: #5e6673;
+  --color-ink-faint: #8b929d;
+  --color-line: #d9d2c4;
+  --color-line-strong: #c9c0ae;
+  --color-accent: #3a5566;
+  --color-accent-hover: #2e4554;
+  --color-accent-fg: #f7f4ee;
+  --color-accent-soft: #e4ebe8;
+  --color-ok: #2f5d45;
+  --color-ok-bg: #e4efe8;
+  --color-warn: #8a5a22;
+  --color-warn-bg: #f3ead8;
+  --color-danger: #8a3535;
+  --color-danger-bg: #f3e0de;
+  --color-info: #355a7a;
+  --color-info-bg: #e2ebf2;
+  --color-on-danger: #faf8f3;
+  --color-sidebar: #13161c;
+  --color-sidebar-fg: #e8e4db;
+  --color-sidebar-muted: #9aa1ab;
+  --color-sidebar-hover: #1e232c;
+  --color-sidebar-active: #252b36;
+  --color-sidebar-line: #2a303a;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+
+  --shadow-paper: 0 1px 2px rgb(23 26 31 / 0.04), 0 8px 24px rgb(23 26 31 / 0.05);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html,
+  body,
+  #app {
+    min-height: 100%;
+  }
+
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  ::selection {
+    background: color-mix(in oklab, var(--color-accent) 22%, transparent);
+    color: var(--color-ink);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
